@@ -5,14 +5,13 @@ import ItemView from "../views/ItemView.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    component: ItemView,
-    props: { id: "1" },
+    redirect: "/view/1",
   },
   {
     path: "/view/:id",
     component: ItemView,
     props: (route) => {
-      console.log("------- props method called");
+      console.log("------- props method called with", route.params.id);
       return {
         id: route.params.id,
       };

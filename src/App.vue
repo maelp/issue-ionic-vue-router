@@ -9,7 +9,7 @@
             <ion-item
               v-for="id in ['1', '2', '3', '4']"
               lines="none"
-              @click="() => $router.push(`/view/${id}`)"
+              :router-link="`/view/${id}`"
               :key="id"
             >
               <ion-label>{{ id }}</ion-label>
