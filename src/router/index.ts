@@ -11,7 +11,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/view/:id",
     component: ItemView,
-    props: true,
+    props: (route) => {
+      console.log("------- props method called");
+      return {
+        id: route.params.id,
+      };
+    },
   },
 ];
 
