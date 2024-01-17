@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Item View</h1>
-    <p>Current ID: {{ id }}</p>
+    <p>Current ID: {{ $props.id }}</p>
   </div>
 </template>
 
