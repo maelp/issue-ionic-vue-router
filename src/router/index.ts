@@ -1,20 +1,23 @@
-import { createRouter, createWebHistory } from '@ionic/vue-router';
-import { RouteRecordRaw } from 'vue-router';
+import { createRouter, createWebHistory } from "@ionic/vue-router";
+import { RouteRecordRaw } from "vue-router";
+import ItemView from "../views/ItemView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '',
-    redirect: '/folder/Inbox'
+    path: "/",
+    component: ItemView,
+    props: { id: "1" },
   },
   {
-    path: '/folder/:id',
-    component: () => import ('../views/FolderPage.vue')
-  }
-]
+    path: "/view/:id",
+    component: ItemView,
+    props: true,
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

@@ -3,24 +3,16 @@
     <ion-split-pane content-id="main-content">
       <ion-menu content-id="main-content" type="overlay">
         <ion-content>
-          <ion-list id="inbox-list">
-            <ion-list-header>Inbox</ion-list-header>
-            <ion-note>hi@ionicframework.com</ion-note>
-
-            <ion-menu-toggle auto-hide="false" v-for="(p, i) in appPages" :key="i">
-              <ion-item @click="selectedIndex = i" router-direction="root" :router-link="p.url" lines="none" detail="false" class="hydrated" :class="{ selected: selectedIndex === i }">
-                <ion-icon aria-hidden="true" slot="start" :ios="p.iosIcon" :md="p.mdIcon"></ion-icon>
-                <ion-label>{{ p.title }}</ion-label>
-              </ion-item>
-            </ion-menu-toggle>
-          </ion-list>
-
           <ion-list id="labels-list">
             <ion-list-header>Labels</ion-list-header>
 
-            <ion-item v-for="(label, index) in labels" lines="none" :key="index">
-              <ion-icon aria-hidden="true" slot="start" :ios="bookmarkOutline" :md="bookmarkSharp"></ion-icon>
-              <ion-label>{{ label }}</ion-label>
+            <ion-item
+              v-for="id in ['1', '2', '3', '4']"
+              lines="none"
+              @click="() => $router.push(`/view/${id}`)"
+              :key="id"
+            >
+              <ion-label>{{ id }}</ion-label>
             </ion-item>
           </ion-list>
         </ion-content>
@@ -34,23 +26,18 @@
 import {
   IonApp,
   IonContent,
-  IonIcon,
   IonItem,
   IonLabel,
   IonList,
   IonListHeader,
   IonMenu,
-  IonMenuToggle,
-  IonNote,
   IonRouterOutlet,
   IonSplitPane,
-} from '@ionic/vue';
-import { ref } from 'vue';
+} from "@ionic/vue";
+import { ref } from "vue";
 import {
   archiveOutline,
   archiveSharp,
-  bookmarkOutline,
-  bookmarkSharp,
   heartOutline,
   heartSharp,
   mailOutline,
@@ -61,52 +48,53 @@ import {
   trashSharp,
   warningOutline,
   warningSharp,
-} from 'ionicons/icons';
+} from "ionicons/icons";
 
 const selectedIndex = ref(0);
 const appPages = [
   {
-    title: 'Inbox',
-    url: '/folder/Inbox',
+    title: "Inbox",
+    url: "/folder/Inbox",
     iosIcon: mailOutline,
     mdIcon: mailSharp,
   },
   {
-    title: 'Outbox',
-    url: '/folder/Outbox',
+    title: "Outbox",
+    url: "/folder/Outbox",
     iosIcon: paperPlaneOutline,
     mdIcon: paperPlaneSharp,
   },
   {
-    title: 'Favorites',
-    url: '/folder/Favorites',
+    title: "Favorites",
+    url: "/folder/Favorites",
     iosIcon: heartOutline,
     mdIcon: heartSharp,
   },
   {
-    title: 'Archived',
-    url: '/folder/Archived',
+    title: "Archived",
+    url: "/folder/Archived",
     iosIcon: archiveOutline,
     mdIcon: archiveSharp,
   },
   {
-    title: 'Trash',
-    url: '/folder/Trash',
+    title: "Trash",
+    url: "/folder/Trash",
     iosIcon: trashOutline,
     mdIcon: trashSharp,
   },
   {
-    title: 'Spam',
-    url: '/folder/Spam',
+    title: "Spam",
+    url: "/folder/Spam",
     iosIcon: warningOutline,
     mdIcon: warningSharp,
   },
 ];
-const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
-const path = window.location.pathname.split('folder/')[1];
+const path = window.location.pathname.split("folder/")[1];
 if (path !== undefined) {
-  selectedIndex.value = appPages.findIndex((page) => page.title.toLowerCase() === path.toLowerCase());
+  selectedIndex.value = appPages.findIndex(
+    (page) => page.title.toLowerCase() === path.toLowerCase()
+  );
 }
 </script>
 
